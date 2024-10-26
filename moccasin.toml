@@ -1,0 +1,32 @@
+[project]
+src = "src"
+out = "out"
+dot_env = ".env"
+save_abi_path = "abis"
+default_network_name = "zksync"
+name = "moccasin_project"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "snekmate",
+]
+
+[networks.zksync]
+url = "$ZKSYNC_RPC_URL"
+fork = true
+is_zksync = true
+explorer_uri = "https://api-era.zksync.network/api"
+explorer_type = "etherscan"
+explorer_api_key = "$ETHERSCAN_ZKSYNC_API_KEY"
+default_account_name = "zk-rich1"
+unsafe_password_file = "$ZK_RICH1_PASSWORD_FILE"
+
+[networks.zksync.contracts]
+uniswapv3_universal_router = { address = "0x28731BCC616B5f51dD52CF2e4dF0E78dD1136C06", abi = "abis/uniswapv3_universal_router.json" }
+aavev3_pool_address_provider = { address = "0x2A3948BB219D6B2Fa83D64100006391a96bE6cb7", abi = "abis/aavev3_pool_address_provider.json" }
+weth = { address = "0xf00DAD97284D0c6F06dc4Db3c32454D4292c6813", abi = "mock_token.vy", deployer_script = "script/mocks/deploy_token.py" }
+usdc = { address = "0x1d17CBcF0D6D143135aE902365D2E5e2A16538D4", abi = "mock_token.vy" }
+
+# You can view all configuration options at https://cyfrin.github.io/moccasin/all_moccasin_toml_parameters.html
