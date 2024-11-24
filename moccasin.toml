@@ -3,7 +3,7 @@ src = "src"
 out = "out"
 dot_env = ".env"
 save_abi_path = "abis"
-default_network_name = "zksync"
+default_network_name = "mainnet-fork"
 name = "moccasin_project"
 version = "0.1.0"
 description = "Add your description here"
@@ -12,21 +12,62 @@ requires-python = ">=3.11"
 dependencies = [
     "snekmate",
 ]
+[networks.contracts]
+weth = { abi = "abis/weth.json" }
+usdc = { abi = "abis/usdc.json" }
+uniswap_swap_router = { abi = "abis/uniswap_swap_router.json" }
+aavev3_pool_address_provider = { abi = "abis/aavev3_pool_address_provider.json" }
+pool = { abi = "abis/pool.json" }
+aave_protocol_data_provider = { abi = "abis/aave_protocol_data_provider.json" }
+eth_usd_price_feed = { abi = "abis/eth_usd_price_feed.json" }
+usdc_usd_price_feed = { abi = "abis/usdc_usd_price_feed.json" }
+
+[networks.mainnet-fork]
+url = "$MAINNET_RPC_URL"
+fork = true
+is_zksync = false
+default_account_name = "anvil1"
+unsafe_password_file = "$ANVIL1_PASSWORD_FILE"
+
+[networks.mainnet-fork.contracts]
+weth = { address = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2" }
+usdc = { address = "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48" }
+uniswap_swap_router = { address = "0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45" }
+aavev3_pool_address_provider = { address = "0x2f39d218133AFaB8F2B819B1066c7E434Ad94E9e" }
+aave_protocol_data_provider = { address = "0x41393e5e337606dc3821075Af65AeE84D7688CBD" }
+eth_usd_price_feed = { address = "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419" }
+usdc_usd_price_feed = { address = "0x8fFfFfd4AfB6115b954Bd326cbe7B4BA576818f6" }
+
+
+[neworks.mainnet-tenderly]
+url = "$TENDERLY_RPC_URL"
+is_zksync = false
+default_account_name = "anvil1"
+unsafe_password_file = "$ANVIL1_PASSWORD_FILE"
+
+[neworks.mainnet-tenderly.contracts]
+weth = { address = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2" }
+usdc = { address = "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48" }
+uniswap_swap_router = { address = "0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD" }
+aavev3_pool_address_provider = { address = "0x2f39d218133AFaB8F2B819B1066c7E434Ad94E9e" }
+aave_protocol_data_provider = { address = "0x41393e5e337606dc3821075Af65AeE84D7688CBD" }
+eth_usd_price_feed = { address = "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419" }
+usdc_usd_price_feed = { address = "0x8fFfFfd4AfB6115b954Bd326cbe7B4BA576818f6" }
 
 [networks.zksync]
 url = "$ZKSYNC_RPC_URL"
 fork = true
 is_zksync = true
 explorer_uri = "https://api-era.zksync.network/api"
-explorer_type = "etherscan"
+explorer_type = "zksyncexplorer"
 explorer_api_key = "$ETHERSCAN_ZKSYNC_API_KEY"
 default_account_name = "zk-rich1"
 unsafe_password_file = "$ZK_RICH1_PASSWORD_FILE"
 
+# Coming soon...
 [networks.zksync.contracts]
-uniswapv3_universal_router = { address = "0x28731BCC616B5f51dD52CF2e4dF0E78dD1136C06", abi = "abis/uniswapv3_universal_router.json" }
-aavev3_pool_address_provider = { address = "0x2A3948BB219D6B2Fa83D64100006391a96bE6cb7", abi = "abis/aavev3_pool_address_provider.json" }
-weth = { address = "0xf00DAD97284D0c6F06dc4Db3c32454D4292c6813", abi = "mock_token.vy", deployer_script = "script/mocks/deploy_token.py" }
-usdc = { address = "0x1d17CBcF0D6D143135aE902365D2E5e2A16538D4", abi = "mock_token.vy" }
+weth = { address = "0xf00DAD97284D0c6F06dc4Db3c32454D4292c6813" }
+usdc = { address = "0x1d17CBcF0D6D143135aE902365D2E5e2A16538D4" }
+uniswap_swap_router = { address = "0x28731BCC616B5f51dD52CF2e4dF0E78dD1136C06" }
 
 # You can view all configuration options at https://cyfrin.github.io/moccasin/all_moccasin_toml_parameters.html
