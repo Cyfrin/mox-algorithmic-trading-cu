@@ -1,5 +1,5 @@
 import boa
-from moccasin.config import get_active_network
+from moccasin.config import get_active_network, Network
 from boa.contracts.abi.abi_contract import ABIContract
 from typing import Tuple
 
@@ -12,11 +12,11 @@ def _add_eth_balance():
     boa.env.set_balance(boa.env.eoa, STARTING_ETH_BALANCE)
 
 
-def _add_token_balance(usdc: ABIContract, weth: ABIContract):
-    master_minter = usdc.masterMinter()
+def _add_token_balance(usdc: ABIContract, weth: ABIContract, active_network: Network):
     my_address = boa.env.eoa
-    with boa.env.prank(master_minter):
-        usdc.configureMinter(my_address, STARTING_USDC_BALANCE)
+    with boa.env.prank(usdc.owner()):
+        usdc.updateMasterMinter(my_address)
+    usdc.configureMinter(my_address, STARTING_USDC_BALANCE)
     usdc.mint(my_address, STARTING_USDC_BALANCE)
     weth.deposit(value=STARTING_WETH_BALANCE)
 
@@ -33,17 +33,18 @@ def setup_script() -> Tuple[ABIContract, ABIContract, ABIContract, ABIContract]:
 
     if active_network.is_local_or_forked_network():
         _add_eth_balance()
-        _add_token_balance(usdc, weth)
+        _add_token_balance(usdc, weth, active_network)
 
     print("Getting atokens, this may take a while...")
     a_tokens = aave_protocol_data_provider.getAllATokens()
     a_usdc = None
     a_weth = None
 
+    token_prefix = "aEth" if active_network.chain_id == 1 else "aZks"
     for a_token in a_tokens:
-        if a_token[0] == "aEthUSDC":
+        if a_token[0] == f"{token_prefix}USDC":
             a_usdc = active_network.manifest_named("usdc", address=a_token[1])
-        if a_token[0] == "aEthWETH":
+        if a_token[0] == f"{token_prefix}WETH":
             a_weth = active_network.manifest_named("usdc", address=a_token[1])
 
     starting_usdc_balance = usdc.balanceOf(boa.env.eoa)

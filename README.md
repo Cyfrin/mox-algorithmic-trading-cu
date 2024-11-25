@@ -2,6 +2,46 @@
 
 This is part of the Cyfrin Updraft Vyper Course. 
 
+We teach you how to balance a portfolio using Aave and Uniswap! Running the entire project you'll see:
+
+```
+Starting setup script...
+Getting atokens, this may take a while...
+Starting USDC balance: 100000000
+Starting WETH balance: 1000000000000000000
+Starting aUSDC balance: 0
+Starting aWETH balance: 0
+Depositing USD Coin into Aave contract 0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2
+Depositing Wrapped Ether into Aave contract 0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2
+User account data:
+        totalCollateralBase: 346570938000
+        totalDebtBase: 0
+        availableBorrowsBase: 278435091589
+        currentLiquidationThreshold: 8285
+        ltv: 8034
+        healthFactor: 115792089237316195423570985008687907853269984665640564039457584007913129639935
+          
+Current percent allocation of USDC: 2.88%
+Current percent allocation of WETH: 97.12%
+Rebalancing needed!
+Target allocation of USDC: 30.00%
+Target allocation of WETH: 70.00%
+Time to swap!
+Let's swap 0.27920575180743146 WETH for at least 892.899917 USDC
+Depositing USD Coin into Aave contract 0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2
+Depositing Wrapped Ether into Aave contract 0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2
+User account data:
+        totalCollateralBase: 346237604398
+        totalDebtBase: 0
+        availableBorrowsBase: 273008351068
+        currentLiquidationThreshold: 8150
+        ltv: 7885
+        healthFactor: 115792089237316195423570985008687907853269984665640564039457584007913129639935
+          
+Current percent allocation of USDC: 29.93%
+Current percent allocation of WETH: 70.07%
+```
+
 - [Mox Algorithmic Trading](#mox-algorithmic-trading)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
@@ -51,7 +91,13 @@ And pass in the `anvil1` private key when prompted, it is here
 ## Quickstart
 
 ```bash
-mox test 
+mox test -s
+```
+
+Or, for LIVE trading:
+
+```bash
+mox run deposit_and_rebalance --network zksync --fork false --account your_account
 ```
 
 # Getting ABIs

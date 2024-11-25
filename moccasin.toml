@@ -21,6 +21,7 @@ pool = { abi = "abis/pool.json" }
 aave_protocol_data_provider = { abi = "abis/aave_protocol_data_provider.json" }
 eth_usd_price_feed = { abi = "abis/eth_usd_price_feed.json" }
 usdc_usd_price_feed = { abi = "abis/usdc_usd_price_feed.json" }
+master_minter = { abi = "abis/master_minter.json" }                               # 0xE982615d461DD5cD06575BbeA87624fda4e3de17
 
 [networks.mainnet-fork]
 url = "$MAINNET_RPC_URL"
@@ -38,7 +39,6 @@ aave_protocol_data_provider = { address = "0x41393e5e337606dc3821075Af65AeE84D76
 eth_usd_price_feed = { address = "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419" }
 usdc_usd_price_feed = { address = "0x8fFfFfd4AfB6115b954Bd326cbe7B4BA576818f6" }
 
-
 [neworks.mainnet-tenderly]
 url = "$TENDERLY_RPC_URL"
 is_zksync = false
@@ -47,8 +47,8 @@ unsafe_password_file = "$ANVIL1_PASSWORD_FILE"
 
 [neworks.mainnet-tenderly.contracts]
 weth = { address = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2" }
-usdc = { address = "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48" }
-uniswap_swap_router = { address = "0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD" }
+usdc = { address = "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48" }
+uniswap_swap_router = { address = "0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45" }
 aavev3_pool_address_provider = { address = "0x2f39d218133AFaB8F2B819B1066c7E434Ad94E9e" }
 aave_protocol_data_provider = { address = "0x41393e5e337606dc3821075Af65AeE84D7688CBD" }
 eth_usd_price_feed = { address = "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419" }
@@ -61,13 +61,19 @@ is_zksync = true
 explorer_uri = "https://api-era.zksync.network/api"
 explorer_type = "zksyncexplorer"
 explorer_api_key = "$ETHERSCAN_ZKSYNC_API_KEY"
-default_account_name = "zk-rich1"
-unsafe_password_file = "$ZK_RICH1_PASSWORD_FILE"
+# default_account_name = "zk-rich1"
+# unsafe_password_file = "$ZK_RICH1_PASSWORD_FILE"
+# default_account_name = "anvil1"
+# unsafe_password_file = "$ANVIL1_PASSWORD_FILE"
 
-# Coming soon...
 [networks.zksync.contracts]
-weth = { address = "0xf00DAD97284D0c6F06dc4Db3c32454D4292c6813" }
+weth = { address = "0x5AEa5775959fBC2557Cc8789bC1bf90A239D9a91" }                         # Different from what the Zksync explorer shows!
 usdc = { address = "0x1d17CBcF0D6D143135aE902365D2E5e2A16538D4" }
-uniswap_swap_router = { address = "0x28731BCC616B5f51dD52CF2e4dF0E78dD1136C06" }
+uniswap_swap_router = { address = "0x99c56385daBCE3E81d8499d0b8d0257aBC07E8A3" }
+aavev3_pool_address_provider = { address = "0x2A3948BB219D6B2Fa83D64100006391a96bE6cb7" }
+aave_protocol_data_provider = { address = "0x5F2A704cE47B373c908fE8A29514249469b52b99" }
+eth_usd_price_feed = { address = "0x6D41d1dc818112880b40e26BD6FD347E41008eDA" }
+usdc_usd_price_feed = { address = "0x1824D297C6d6D311A204495277B63e943C2D376E" }
+
 
 # You can view all configuration options at https://cyfrin.github.io/moccasin/all_moccasin_toml_parameters.html
