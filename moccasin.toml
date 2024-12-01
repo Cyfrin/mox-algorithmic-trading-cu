@@ -29,6 +29,7 @@ fork = true
 is_zksync = false
 default_account_name = "anvil1"
 unsafe_password_file = "$ANVIL1_PASSWORD_FILE"
+chain_id = 1
 
 [networks.mainnet-fork.contracts]
 weth = { address = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2" }
@@ -56,11 +57,12 @@ usdc_usd_price_feed = { address = "0x8fFfFfd4AfB6115b954Bd326cbe7B4BA576818f6" }
 
 [networks.zksync]
 url = "$ZKSYNC_RPC_URL"
-fork = true
+fork = false
 is_zksync = true
 explorer_uri = "https://api-era.zksync.network/api"
 explorer_type = "zksyncexplorer"
 explorer_api_key = "$ETHERSCAN_ZKSYNC_API_KEY"
+chain_id = 324
 # default_account_name = "zk-rich1"
 # unsafe_password_file = "$ZK_RICH1_PASSWORD_FILE"
 # default_account_name = "anvil1"
